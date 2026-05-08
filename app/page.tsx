@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
 
@@ -13,11 +13,93 @@ export default function Home() {
     useCase: ""
   });
 
+  const [auditResult, setAuditResult] = useState(null);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("auditForm");
+
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("auditForm", JSON.stringify(formData));
+  }, [formData]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const generateAudit = () => {
+
+    let recommendation = "";
+    let savings = 0;
+
+    const spend = Number(formData.spend);
+    const seats = Number(formData.seats);
+
+    if (formData.tool === "ChatGPT") {
+
+      if (seats <= 2) {
+        recommendation = "Switch to ChatGPT Plus";
+        savings = Math.max(spend - 20, 0);
+      } else {
+        recommendation = "Consider ChatGPT Team for collaboration";
+        savings = Math.max(spend - 30, 0);
+      }
+
+    }
+
+    else if (formData.tool === "Cursor") {
+
+      if (seats <= 3) {
+        recommendation = "Downgrade to Cursor Pro";
+        savings = Math.max(spend - 20, 0);
+      } else {
+        recommendation = "Cursor pricing seems reasonable";
+        savings = Math.max(spend - 40, 0);
+      }
+
+    }
+
+    else if (formData.tool === "Claude") {
+
+      recommendation = "Consider Claude Pro for lower operational cost";
+      savings = Math.max(spend - 30, 0);
+
+    }
+
+    else if (formData.tool === "GitHub Copilot") {
+
+      recommendation = "GitHub Copilot Individual may reduce costs";
+      savings = Math.max(spend - 10, 0);
+
+    }
+
+    else if (formData.tool === "Gemini") {
+
+      recommendation = "Gemini Pro may provide better pricing efficiency";
+      savings = Math.max(spend - 15, 0);
+
+    }
+
+    else {
+
+      recommendation = "No optimization suggestion available";
+
+    }
+
+    setAuditResult({
+  recommendation,
+  savings,
+  annualSavings: savings * 12,
+  summary: `Your current ${formData.tool} setup shows optimization opportunities. Based on your monthly spend and seat count, switching plans could reduce operational AI expenses while maintaining similar productivity and capabilities.`
+});
+
   };
 
   return (
@@ -151,9 +233,93 @@ export default function Home() {
               </select>
             </div>
 
-            <button className="bg-white text-black py-4 rounded-xl font-semibold hover:opacity-90 transition">
+            <button
+              onClick={generateAudit}
+              className="bg-white text-black py-4 rounded-xl font-semibold hover:opacity-90 transition"
+            >
               Generate Audit
             </button>
+
+            {auditResult && (
+
+              <div className="mt-8 bg-black border border-zinc-700 rounded-2xl p-8">
+
+                <h3 className="text-3xl font-bold mb-6">
+                  Audit Results
+                </h3>
+
+                <div className="grid md:grid-cols-2 gap-6">
+
+                  <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+
+                    <p className="text-gray-400 text-sm mb-2">
+                      Recommended Action
+                    </p>
+
+                    <h4 className="text-xl font-semibold">
+                      {auditResult.recommendation}
+                    </h4>
+
+                  </div>
+
+                  <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+
+                    <p className="text-gray-400 text-sm mb-2">
+                      Estimated Monthly Savings
+                    </p>
+
+                    <h4 className="text-3xl font-bold text-green-400">
+                      ${auditResult.savings}
+                    </h4>
+
+                  </div>
+
+                </div>
+
+                <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+
+                  <p className="text-gray-400 text-sm mb-2">
+                    Estimated Annual Savings
+                  </p>
+
+                  <h4 className="text-4xl font-bold text-green-400">
+                    ${auditResult.annualSavings}
+                  </h4>
+
+                </div>
+
+                {auditResult.savings > 500 && (
+
+                  <div className="mt-6 bg-green-500/10 border border-green-500 rounded-2xl p-6">
+
+                    <h4 className="text-2xl font-bold text-green-400 mb-2">
+                      High Savings Opportunity
+                    </h4>
+
+                    <p className="text-gray-300">
+                      Your organization may significantly reduce AI infrastructure
+                      costs through optimized plans and AI credits.
+                    </p>
+
+                  </div>
+                  
+
+                )}
+                <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+
+  <p className="text-gray-400 text-sm mb-3">
+    AI Generated Summary
+  </p>
+
+  <p className="text-gray-300 leading-7">
+    {auditResult.summary}
+  </p>
+
+</div>
+
+              </div>
+
+            )}
 
           </div>
 
