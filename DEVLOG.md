@@ -25,17 +25,22 @@ Plan for tomorrow:
 
 ## Day 2 — 2026-05-09
 
-Hours worked: 0
+Hours worked: 6
 
 What I did:
-- Planned implementation for multi-tool support and backend integration
-- Organized required assignment documentation files
+- Added support for multiple AI tools
+- Improved audit recommendation logic
+- Enhanced results dashboard UI
+- Implemented AI-generated summary section
+- Deployed application to Vercel
 
 What I learned:
-- Understood the importance of product thinking and documentation in startup-focused engineering assignments
+- Learned how to manage complex state updates for dynamic audit entries in React
 
 Blockers / what I'm stuck on:
-- Designing a scalable structure for handling multiple audit entries
+- Planning backend structure for storing and sharing public audit reports
 
 Plan for tomorrow:
-- Implement multi-tool support and integrate backend storage
+- Integrate Firebase backend
+- Save audit results
+- Generate shareable audit URLs
