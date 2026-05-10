@@ -69,3 +69,8 @@ https://ai-spend-audit-omega.vercel.app/
 Firebase Firestore was selected to accelerate MVP development and reduce backend operational complexity while supporting scalable document-based storage for audit reports and public shareable URLs.
 
 JavaScript was selected over TypeScript to optimize rapid iteration speed during MVP development under a constrained assignment timeline.
+
+
+## Live Demo
+
+https://ai-spend-audit-omega.vercel.app
