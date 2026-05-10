@@ -443,19 +443,39 @@ const saveAudit = async () => {
 
                 {shareId && (
 
-                  <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+  <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
 
-                    <p className="text-gray-400 text-sm mb-2">
-                      Shareable Audit ID
-                    </p>
+    <p className="text-gray-400 text-sm mb-2">
+      Shareable Audit Link
+    </p>
 
-                    <p className="text-green-400 break-all">
-                      {shareId}
-                    </p>
+    <div className="flex flex-col md:flex-row gap-4">
 
-                  </div>
+      <input
+        type="text"
+        readOnly
+        value={`https://ai-spend-audit-omega.vercel.app/audit/${shareId}`}
+        className="flex-1 bg-black border border-zinc-700 rounded-xl px-4 py-3 text-green-400"
+      />
 
-                )}
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(
+            `https://ai-spend-audit-omega.vercel.app/audit/${shareId}`
+          );
+
+          alert("Link copied!");
+        }}
+        className="bg-white text-black px-6 py-3 rounded-xl font-semibold"
+      >
+        Copy Link
+      </button>
+
+    </div>
+
+  </div>
+
+)}
 
               </div>
 
