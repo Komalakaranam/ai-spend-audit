@@ -432,16 +432,11 @@ const saveAudit = async () => {
                 </div>
 
                <button
-  
   onClick={saveAudit}
   disabled={loading}
   className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition disabled:opacity-50"
 >
   {loading ? "Saving..." : "Save Audit Report"}
-</button>
-  className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition"
->
-  Save Audit Report
 </button>
 
                 {shareId && (

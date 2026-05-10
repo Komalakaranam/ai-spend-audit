@@ -74,3 +74,18 @@ JavaScript was selected over TypeScript to optimize rapid iteration speed during
 ## Live Demo
 
 https://ai-spend-audit-omega.vercel.app
+
+
+## Screenshots
+
+### Homepage
+
+![Homepage](/screenshots/home.png)
+
+### Audit Results
+
+![Results](/screenshots/results.png)
+
+### Shared Audit Report
+
+![Shared Report](/screenshots/shared-report.png)
