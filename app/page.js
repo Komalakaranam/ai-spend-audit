@@ -18,6 +18,7 @@ export default function Home() {
   const [tools, setTools] = useState([]);
   const [auditResult, setAuditResult] = useState(null);
   const [shareId, setShareId] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedTools = localStorage.getItem("auditTools");
@@ -150,7 +151,7 @@ const saveAudit = async () => {
 
   try {
 
-    console.log("Saving started");
+    setLoading(true);
 
     const docRef = await addDoc(collection(db, "audits"), {
       tools,
@@ -158,19 +159,19 @@ const saveAudit = async () => {
       createdAt: new Date()
     });
 
-    console.log("Saved successfully");
-    console.log(docRef.id);
-
     setShareId(docRef.id);
 
     alert("Audit saved successfully!");
 
   } catch (error) {
 
-    console.log("FIREBASE ERROR:");
     console.log(error);
 
     alert("Failed to save audit");
+
+  } finally {
+
+    setLoading(false);
 
   }
 
@@ -431,11 +432,13 @@ const saveAudit = async () => {
                 </div>
 
                <button
-  type="button"
-  onClick={() => {
-    alert("Button clicked");
-    saveAudit();
-  }}
+  
+  onClick={saveAudit}
+  disabled={loading}
+  className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition disabled:opacity-50"
+>
+  {loading ? "Saving..." : "Save Audit Report"}
+</button>
   className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition"
 >
   Save Audit Report
