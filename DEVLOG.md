@@ -44,3 +44,28 @@ Plan for tomorrow:
 - Integrate Firebase backend
 - Save audit results
 - Generate shareable audit URLs
+
+## Day 3 — 2026-05-10
+
+Hours worked: 7
+
+What I did:
+- Integrated Firebase Firestore backend
+- Implemented audit report saving
+- Added shareable audit report IDs
+- Built dynamic audit report pages using Next.js routing
+- Connected Firestore database with frontend
+- Added persistent cloud storage for audit reports
+
+What I learned:
+- Learned how Firestore document storage works
+- Understood dynamic routing in Next.js App Router
+- Learned backend integration using Firebase SDK
+
+Blockers / what I'm stuck on:
+- Need to improve public report UI and validation handling
+
+Plan for tomorrow:
+- Improve mobile responsiveness
+- Add loading states and error handling
+- Improve README and architecture documentation

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { db } from "../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function Home() {
 
@@ -15,6 +17,7 @@ export default function Home() {
 
   const [tools, setTools] = useState([]);
   const [auditResult, setAuditResult] = useState(null);
+  const [shareId, setShareId] = useState("");
 
   useEffect(() => {
     const savedTools = localStorage.getItem("auditTools");
@@ -143,7 +146,35 @@ export default function Home() {
     });
 
   };
+const saveAudit = async () => {
 
+  try {
+
+    console.log("Saving started");
+
+    const docRef = await addDoc(collection(db, "audits"), {
+      tools,
+      auditResult,
+      createdAt: new Date()
+    });
+
+    console.log("Saved successfully");
+    console.log(docRef.id);
+
+    setShareId(docRef.id);
+
+    alert("Audit saved successfully!");
+
+  } catch (error) {
+
+    console.log("FIREBASE ERROR:");
+    console.log(error);
+
+    alert("Failed to save audit");
+
+  }
+
+};
   return (
     <main className="min-h-screen bg-black text-white">
 
@@ -398,6 +429,33 @@ export default function Home() {
                   </p>
 
                 </div>
+
+               <button
+  type="button"
+  onClick={() => {
+    alert("Button clicked");
+    saveAudit();
+  }}
+  className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition"
+>
+  Save Audit Report
+</button>
+
+                {shareId && (
+
+                  <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+
+                    <p className="text-gray-400 text-sm mb-2">
+                      Shareable Audit ID
+                    </p>
+
+                    <p className="text-green-400 break-all">
+                      {shareId}
+                    </p>
+
+                  </div>
+
+                )}
 
               </div>
 

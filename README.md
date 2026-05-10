@@ -43,3 +43,29 @@ A SaaS-style AI spend optimization platform that helps teams analyze AI tool sub
 ## Live Demo
 
 https://ai-spend-audit-omega.vercel.app/
+
+
+## Features
+
+- Multi-tool AI spend auditing
+- Cost optimization recommendations
+- Monthly and annual savings calculations
+- AI-generated audit summaries
+- Firebase Firestore backend integration
+- Shareable public audit report URLs
+- Persistent cloud-stored reports
+- Responsive SaaS-style UI
+
+## Tech Stack
+
+- Next.js
+- React
+- Firebase Firestore
+- Tailwind CSS
+- Vercel
+
+## Architecture Decisions
+
+Firebase Firestore was selected to accelerate MVP development and reduce backend operational complexity while supporting scalable document-based storage for audit reports and public shareable URLs.
+
+JavaScript was selected over TypeScript to optimize rapid iteration speed during MVP development under a constrained assignment timeline.
