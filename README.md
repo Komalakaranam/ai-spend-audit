@@ -1,51 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
 # AI Spend Audit
 
-A SaaS-style AI spend optimization platform that helps teams analyze AI tool subscriptions and discover potential monthly savings opportunities.
+AI Spend Audit is a SaaS-style web application that helps startups and teams analyze AI subscription spending, identify optimization opportunities, and generate shareable audit reports.
 
-## Live Demo
+---
 
-https://ai-spend-audit-omega.vercel.app/
+# Live Demo
 
+https://ai-spend-audit-omega.vercel.app
 
-## Features
+---
+
+# Features
 
 - Multi-tool AI spend auditing
 - Cost optimization recommendations
@@ -55,37 +20,153 @@ https://ai-spend-audit-omega.vercel.app/
 - Shareable public audit report URLs
 - Persistent cloud-stored reports
 - Responsive SaaS-style UI
+- Loading states and validation handling
 
-## Tech Stack
+---
 
+# Supported Tools
+
+- ChatGPT
+- Claude
+- Cursor
+- GitHub Copilot
+- Gemini
+
+---
+
+# Tech Stack
+
+Frontend:
 - Next.js
 - React
-- Firebase Firestore
 - Tailwind CSS
+
+Backend:
+- Firebase Firestore
+
+Deployment:
 - Vercel
 
-## Architecture Decisions
+---
 
-Firebase Firestore was selected to accelerate MVP development and reduce backend operational complexity while supporting scalable document-based storage for audit reports and public shareable URLs.
+# Architecture Highlights
 
-JavaScript was selected over TypeScript to optimize rapid iteration speed during MVP development under a constrained assignment timeline.
+- Next.js App Router
+- Dynamic route generation
+- Firestore document storage
+- Client-side state management
+- SaaS-style report sharing workflow
 
+---
 
-## Live Demo
+# Screenshots
 
-https://ai-spend-audit-omega.vercel.app
-
-
-## Screenshots
-
-### Homepage
+## Homepage
 
 ![Homepage](/screenshots/home.png)
 
-### Audit Results
+## Audit Results
 
 ![Results](/screenshots/results.png)
 
-### Shared Audit Report
+## Shared Audit Report
 
 ![Shared Report](/screenshots/shared-report.png)
+
+---
+
+# Local Development
+
+Clone repository:
+
+```bash
+git clone YOUR_GITHUB_REPO_URL
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
+
+```bash
+npm run dev
+```
+
+---
+
+# Firebase Setup
+
+Create a Firebase project and configure:
+- Firestore Database
+- Firebase Web App SDK
+
+Add Firebase configuration inside:
+
+```txt
+src/firebase/config.js
+```
+
+---
+
+# Deployment
+
+Deployment is handled using Vercel.
+
+Production URL:
+https://ai-spend-audit-omega.vercel.app
+
+---
+
+# Why JavaScript Instead of TypeScript
+
+TypeScript was considered during project initialization. However, JavaScript was selected to optimize rapid MVP iteration speed and reduce implementation overhead during the assignment timeline.
+
+The primary focus was delivering:
+- full-stack functionality
+- backend integration
+- dynamic routing
+- deployment
+- persistent storage
+- documentation quality
+
+within a constrained development window.
+
+Future iterations could migrate to TypeScript for stronger type safety and maintainability.
+
+---
+
+# Future Improvements
+
+Potential future enhancements:
+- authentication
+- private/public report permissions
+- OpenAI API integration
+- advanced analytics dashboards
+- recurring subscription monitoring
+- TypeScript migration
+- automated testing
+
+---
+
+# Documentation Files
+
+- ARCHITECTURE.md
+- DEVLOG.md
+- REFLECTION.md
+- TESTS.md
+- PROMPTS.md
+- GTM.md
+- ECONOMICS.md
+- USER_INTERVIEWS.md
+- LANDING_COPY.md
+- METRICS.md
+- PRICING_DATA.md
+
+---
+
+# Author
+
+Komala Karanam

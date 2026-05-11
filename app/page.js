@@ -21,16 +21,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const savedTools = localStorage.getItem("auditTools");
-
-    if (savedTools) {
-      setTools(JSON.parse(savedTools));
-    }
+    localStorage.removeItem("auditTools");
+    setTools([]);
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("auditTools", JSON.stringify(tools));
-  }, [tools]);
 
   const handleChange = (e) => {
     setFormData({
@@ -147,35 +140,37 @@ export default function Home() {
     });
 
   };
-const saveAudit = async () => {
 
-  try {
+  const saveAudit = async () => {
 
-    setLoading(true);
+    try {
 
-    const docRef = await addDoc(collection(db, "audits"), {
-      tools,
-      auditResult,
-      createdAt: new Date()
-    });
+      setLoading(true);
 
-    setShareId(docRef.id);
+      const docRef = await addDoc(collection(db, "audits"), {
+        tools,
+        auditResult,
+        createdAt: new Date()
+      });
 
-    alert("Audit saved successfully!");
+      setShareId(docRef.id);
 
-  } catch (error) {
+      alert("Audit saved successfully!");
 
-    console.log(error);
+    } catch (error) {
 
-    alert("Failed to save audit");
+      console.log(error);
 
-  } finally {
+      alert("Failed to save audit");
 
-    setLoading(false);
+    } finally {
 
-  }
+      setLoading(false);
 
-};
+    }
+
+  };
+
   return (
     <main className="min-h-screen bg-black text-white">
 
@@ -431,49 +426,49 @@ const saveAudit = async () => {
 
                 </div>
 
-               <button
-  onClick={saveAudit}
-  disabled={loading}
-  className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition disabled:opacity-50"
->
-  {loading ? "Saving..." : "Save Audit Report"}
-</button>
+                <button
+                  onClick={saveAudit}
+                  disabled={loading}
+                  className="mt-6 w-full bg-green-500 text-black py-4 rounded-xl font-semibold hover:opacity-90 transition disabled:opacity-50"
+                >
+                  {loading ? "Saving..." : "Save Audit Report"}
+                </button>
 
                 {shareId && (
 
-  <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+                  <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
 
-    <p className="text-gray-400 text-sm mb-2">
-      Shareable Audit Link
-    </p>
+                    <p className="text-gray-400 text-sm mb-2">
+                      Shareable Audit Link
+                    </p>
 
-    <div className="flex flex-col md:flex-row gap-4">
+                    <div className="flex flex-col md:flex-row gap-4">
 
-      <input
-        type="text"
-        readOnly
-        value={`https://ai-spend-audit-omega.vercel.app/audit/${shareId}`}
-        className="flex-1 bg-black border border-zinc-700 rounded-xl px-4 py-3 text-green-400"
-      />
+                      <input
+                        type="text"
+                        readOnly
+                        value={`https://ai-spend-audit-omega.vercel.app/audit/${shareId}`}
+                        className="flex-1 bg-black border border-zinc-700 rounded-xl px-4 py-3 text-green-400"
+                      />
 
-      <button
-        onClick={() => {
-          navigator.clipboard.writeText(
-            `https://ai-spend-audit-omega.vercel.app/audit/${shareId}`
-          );
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `https://ai-spend-audit-omega.vercel.app/audit/${shareId}`
+                          );
 
-          alert("Link copied!");
-        }}
-        className="bg-white text-black px-6 py-3 rounded-xl font-semibold"
-      >
-        Copy Link
-      </button>
+                          alert("Link copied!");
+                        }}
+                        className="bg-white text-black px-6 py-3 rounded-xl font-semibold"
+                      >
+                        Copy Link
+                      </button>
 
-    </div>
+                    </div>
 
-  </div>
+                  </div>
 
-)}
+                )}
 
               </div>
 
